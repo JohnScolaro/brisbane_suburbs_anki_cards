@@ -1,0 +1,1 @@
+I've lived in Brisbane my whole life, and I don't know all the suburbs. That's because there are 190 of them. Anki cards are a good strategy for remember a whole lot of useless information, so I figured I'd automate the creation of a desk of Anki cards for each locality (informally known as suburbs) in Brisbane.
