@@ -1,3 +1,8 @@
+# Python things
 .venv
 output
+__pycache__
+*.egg-info
+
+# The created deck
 *.apkg
