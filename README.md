@@ -8,7 +8,7 @@ I've lived in Brisbane my whole life, and I don't know all the suburbs. That's b
 
 ## Creating the Deck
 
-```
+```bash
 # Install the repo
 pip install -e.
 

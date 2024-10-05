@@ -6,3 +6,6 @@ __pycache__
 
 # The created deck
 *.apkg
+
+# Ruff
+.ruff_cache
