@@ -1,8 +1,9 @@
 import genanki
-import os
 from brisbane_suburbs_anki_cards.process_kml import get_localities_df
-from brisbane_suburbs_anki_cards import DOC_KML
+from brisbane_suburbs_anki_cards import DOC_KML, SUBURBS_CSV
 from brisbane_suburbs_anki_cards.constants import LOCAL_GOVERNMENT_AREAS_WE_CARE_ABOUT
+import pandas as pd
+import os
 
 # Anki deck metadata
 DECK_NAME = "Brisbane Suburbs"
@@ -17,12 +18,13 @@ my_model = genanki.Model(
     fields=[
         {"name": "Image"},
         {"name": "Suburb"},
+        {"name": "LGA"},
     ],
     templates=[
         {
             "name": "ImageSuburbCard",
             "qfmt": "{{Image}}",
-            "afmt": """{{FrontSide}}<hr id="answer" style="border:none;"/><div style="text-align:center; font-size: 1.5em;">{{Suburb}}</div>""",
+            "afmt": """{{FrontSide}}<hr id="answer" style="border:none;"/><div style="text-align:center; font-size: 2em;">{{Suburb}}</div><div style="text-align:center; font-size: 1em;">{{LGA}}</div>""",
         }
     ],
 )
@@ -35,24 +37,29 @@ def create_anki_deck() -> None:
     my_deck = genanki.Deck(DECK_ID, DECK_NAME)
     media_files = []
 
-    # Loop over all images in the output folder and add them to the deck
-    for root, dirs, files in os.walk(os.path.join("output", "Brisbane City")):
-        for file in files:
-            if file.endswith(".jpg"):
-                # The image path is the media file
-                image_path = os.path.join(root, file)
+    # Load info from the suburbs CSV.
+    card_data_df = pd.read_csv(SUBURBS_CSV)
 
-                # Extract locality name from file name (remove .jpg extension)
-                locality = os.path.splitext(file)[0]
+    for (
+        suburb_names,
+        image_location,
+        lga,
+        fun_fact,
+        anchor_suburb,
+    ) in card_data_df.itertuples(index=False):
 
-                # Add the image and locality to the Anki deck
-                my_note = genanki.Note(
-                    model=my_model,
-                    fields=[f'<img src="{file}">', locality],
-                    due=suburb_to_cbd_mapping[locality],
-                )
-                my_deck.add_note(my_note)
-                media_files.append(image_path)
+        # Add the image and locality to the Anki deck
+        my_note = genanki.Note(
+            model=my_model,
+            fields=[
+                f'<img src="{os.path.basename(image_location)}">',
+                suburb_names,
+                lga,
+            ],
+            due=suburb_to_cbd_mapping[anchor_suburb],
+        )
+        my_deck.add_note(my_note)
+        media_files.append(image_location)
 
     # Generate the Anki package
     output_anki_file = "suburb_maps.apkg"
