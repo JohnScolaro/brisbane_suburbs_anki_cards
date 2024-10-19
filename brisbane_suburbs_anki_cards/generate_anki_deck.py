@@ -4,6 +4,7 @@ from brisbane_suburbs_anki_cards import DOC_KML, SUBURBS_CSV
 from brisbane_suburbs_anki_cards.constants import LOCAL_GOVERNMENT_AREAS_WE_CARE_ABOUT
 import pandas as pd
 import os
+import html
 
 # Anki deck metadata
 DECK_NAME = "Brisbane Suburbs"
@@ -19,12 +20,19 @@ my_model = genanki.Model(
         {"name": "Image"},
         {"name": "Suburb"},
         {"name": "LGA"},
+        {"name": "Fun Fact"},
     ],
     templates=[
         {
             "name": "ImageSuburbCard",
             "qfmt": "{{Image}}",
-            "afmt": """{{FrontSide}}<hr id="answer" style="border:none;"/><div style="text-align:center; font-size: 2em;">{{Suburb}}</div><div style="text-align:center; font-size: 1em;">{{LGA}}</div>""",
+            "afmt": """
+                {{FrontSide}}
+                <hr id="answer" style="border:none;"/>
+                <div style="text-align:center; font-size: 2em;">{{Suburb}}</div>
+                <div style="text-align:center; font-size: 1em;">{{LGA}}</div>
+                <div style="text-align:center; font-size: 1em; margin-top: 1em;">{{Fun Fact}}</div>
+            """,
         }
     ],
 )
@@ -39,6 +47,7 @@ def create_anki_deck() -> None:
 
     # Load info from the suburbs CSV.
     card_data_df = pd.read_csv(SUBURBS_CSV)
+    card_data_df["optional_fun_fact"] = card_data_df["optional_fun_fact"].fillna("")
 
     for (
         suburb_names,
@@ -55,6 +64,7 @@ def create_anki_deck() -> None:
                 f'<img src="{os.path.basename(image_location)}">',
                 suburb_names,
                 lga,
+                html.escape(fun_fact),
             ],
             due=suburb_to_cbd_mapping[anchor_suburb],
         )
