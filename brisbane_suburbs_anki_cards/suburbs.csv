@@ -31,8 +31,7 @@ Burbank,output/localities/Burbank.jpg,Brisbane City,,Burbank
 Calamvale,output/localities/Calamvale.jpg,Brisbane City,,Calamvale
 Camp Hill,output/localities/Camp Hill.jpg,Brisbane City,,Camp Hill
 Cannon Hill,output/localities/Cannon Hill.jpg,Brisbane City,,Cannon Hill
-Carina,output/localities/Carina.jpg,Brisbane City,,Carina
-Carina Heights,output/localities/Carina Heights.jpg,Brisbane City,,Carina Heights
+Carina and Carina Heights,output/combined_localities/Carina and Carina Heights.jpg,Brisbane City,,Carina
 Carindale,output/localities/Carindale.jpg,Brisbane City,,Carindale
 Carseldine,output/localities/Carseldine.jpg,Brisbane City,,Carseldine
 Chandler,output/localities/Chandler.jpg,Brisbane City,,Chandler
@@ -178,7 +177,7 @@ Willawong,output/localities/Willawong.jpg,Brisbane City,,Willawong
 Wilston,output/localities/Wilston.jpg,Brisbane City,,Wilston
 Windsor,output/localities/Windsor.jpg,Brisbane City,,Windsor
 Wishart,output/localities/Wishart.jpg,Brisbane City,,Wishart
-Woolloongabba,output/localities/Woolloongabba.jpg,Brisbane City,,Woolloongabba
+Woolloongabba,output/localities/Woolloongabba.jpg,Brisbane City,Used to be named: "One Mile Swamp",Woolloongabba
 Wooloowin,output/localities/Wooloowin.jpg,Brisbane City,,Wooloowin
 Wynnum,output/localities/Wynnum.jpg,Brisbane City,,Wynnum
 Wynnum West,output/localities/Wynnum West.jpg,Brisbane City,,Wynnum West

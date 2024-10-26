@@ -26,7 +26,9 @@ SPECIAL_CASE_1 = {
     "Stafford and Stafford Heights": {"Stafford", "Stafford Heights"},
     "Sunnybank and Sunnybank Hills": {"Sunnybank", "Sunnybank Hills"},
     "Brookfield and Upper Brookfield": {"Brookfield", "Upper Brookfield"},
+    "Carina and Carina Heights": {"Carina", "Carina Heights"},
 }
+
 SPECIAL_CASE_1_LOCALITIES = set(
     locality for localities in SPECIAL_CASE_1.values() for locality in localities
 )
